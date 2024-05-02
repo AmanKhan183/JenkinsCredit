@@ -46,10 +46,16 @@ pipeline {
     }
     post {
         always {
-            mail to: 'khanaman2003@gmail.com',
-                subject: "Build ${currentBuild.currentResult}: Job ${env.JOB_NAME}",
-                body: "More details at: ${env.BUILD_URL}",
-                attachLog: true
+            script {
+                try {
+                    mail to: 'samborathanak3@gmail.com',
+                         subject: "Pipeline Notification for ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
+                         body: "The build was ${currentBuild.currentResult}. Check console output at: ${env.BUILD_URL}",
+                         attachLog: true
+                } catch (Exception e) {
+                    echo "Failed to send email. Error: ${e.getMessage()}"
+                }
+            }
         }
     }
 }
