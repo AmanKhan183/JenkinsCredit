@@ -48,7 +48,7 @@ pipeline {
         always {
             script {
                 try {
-                    mail to: 'samborathanak3@gmail.com',
+                    mail to: 'khanaman2003@gmail.com',
                          subject: "Pipeline Notification for ${env.JOB_NAME} - Build #${env.BUILD_NUMBER}",
                          body: "The build was ${currentBuild.currentResult}. Check console output at: ${env.BUILD_URL}",
                          attachLog: true
